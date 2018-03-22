@@ -63,10 +63,10 @@ var Movie = React.createClass({
     render: function() {
         return (
             React.createElement('li', {},
-                React.createElement(MovieTitle, { title: movie.title }),
-                React.createElement(MovieDescription, { desc: movie.desc }),
-                React.createElement(MovieActor, { actor: movie.actor }),
-                React.createElement(MovieImage, { img: movie.image })
+                React.createElement(MovieTitle, { title: this.props.movie.title }),
+                React.createElement(MovieDescription, { desc: this.props.movie.desc }),
+                React.createElement(MovieActor, { actor: this.props.movie.actor }),
+                React.createElement(MovieImage, { image: this.props.movie.image })
             )
         )
     },
@@ -78,7 +78,7 @@ var MovieTitle = React.createClass({
     },
     render: function() {
         return (
-            React.createElement('h2', {}, this.props.title),
+            React.createElement('h2', {}, this.props.title)
         )
     }
 });
@@ -89,7 +89,7 @@ var MovieDescription = React.createClass({
     },
     render: function() {
         return (
-            React.createElement('p', {}, this.props.desc),
+            React.createElement('p', {}, this.props.desc)
         )
     }
 });
@@ -100,7 +100,7 @@ var MovieActor = React.createClass({
     },
     render: function() {
         return (
-            React.createElement('p', {}, this.props.actor),
+            React.createElement('p', {}, this.props.actor)
         )
     }
 });
@@ -111,18 +111,21 @@ var MovieImage = React.createClass({
     },
     render: function() {
         return (
-            React.createElement('img', { src: this.props.image }),
+            React.createElement('img', { src: this.props.image })
         )
     }
 });
 
 var moviesElements = movies.map(function(movie) {
     return (
-        React.createElement('Movie', { key: movie.id, movie: movie })
+        React.createElement(Movie, { key: movie.id, movie: movie })
     )
 });
 
-
-
+var element =
+    React.createElement('div', {},
+        React.createElement('h1', {}, 'Lista filmów'),
+        React.createElement('ul', {}, moviesElements)
+    );
 
 ReactDOM.render(element, document.getElementById('app'));
